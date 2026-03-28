@@ -8,15 +8,17 @@ interface BingoSquareProps {
 
 export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
   const baseClasses =
-    'relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight';
+    'relative flex min-h-[60px] select-none items-center justify-center border p-1 text-center font-mono text-[11px] leading-tight transition-all duration-200 sm:text-xs';
 
-  const stateClasses = square.isMarked
-    ? isWinning
-      ? 'bg-amber-200 border-amber-400 text-amber-900'
-      : 'bg-marked border-marked-border text-green-800'
-    : 'bg-white text-gray-700 active:bg-gray-100';
+  const stateClasses = square.isFreeSpace
+    ? 'border-neon/65 bg-panel text-neon [text-shadow:0_0_8px_rgba(57,255,20,0.35)]'
+    : square.isMarked
+      ? isWinning
+        ? 'border-win bg-win/12 text-win shadow-[0_0_12px_rgba(255,0,170,0.45)] [text-shadow:0_0_8px_rgba(255,0,170,0.35)]'
+        : 'border-neon bg-neon/12 text-neon shadow-[0_0_12px_rgba(57,255,20,0.3)]'
+      : 'border-border-muted bg-panel text-text-primary/85 hover:border-neon/40 hover:text-text-primary';
 
-  const freeSpaceClasses = square.isFreeSpace ? 'font-bold text-sm' : '';
+  const freeSpaceClasses = square.isFreeSpace ? 'font-display text-sm font-bold tracking-[0.14em]' : '';
 
   return (
     <button
@@ -26,9 +28,17 @@ export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
       aria-pressed={square.isMarked}
       aria-label={square.isFreeSpace ? 'Free space' : square.text}
     >
-      <span className="wrap-break-word hyphens-auto">{square.text}</span>
+      <span className="break-words hyphens-auto">
+        {square.isFreeSpace ? '[ FREE ]' : square.text}
+      </span>
       {square.isMarked && !square.isFreeSpace && (
-        <span className="absolute top-0.5 right-0.5 text-green-600 text-xs">✓</span>
+        <span
+          className={`absolute right-0.5 top-0.5 text-[11px] ${
+            isWinning ? 'text-win' : 'text-neon'
+          }`}
+        >
+          ✓
+        </span>
       )}
     </button>
   );

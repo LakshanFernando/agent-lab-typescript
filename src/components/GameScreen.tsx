@@ -17,33 +17,31 @@ export function GameScreen({
   onReset,
 }: GameScreenProps) {
   return (
-    <div className="flex flex-col min-h-full bg-gray-50">
-      {/* Header */}
-      <header className="flex items-center justify-between p-3 bg-white border-b border-gray-200">
+    <div className="flex min-h-full flex-col bg-base">
+      <header className="flex items-center justify-between border-b border-neon/45 bg-panel/90 p-3 backdrop-blur-sm">
         <button
           onClick={onReset}
-          className="text-gray-500 text-sm px-3 py-1.5 rounded active:bg-gray-100"
+          className="px-3 py-1.5 font-mono text-xs uppercase tracking-[0.12em] text-neon/85 transition-colors hover:text-neon"
         >
           ← Back
         </button>
-        <h1 className="font-bold text-gray-900">Soc Ops</h1>
+        <h1 className="font-display text-2xl font-bold uppercase tracking-[0.18em] text-neon [text-shadow:0_0_8px_rgba(57,255,20,0.35)]">
+          Soc Ops
+        </h1>
         <div className="w-16"></div>
       </header>
 
-      {/* Instructions */}
-      <p className="text-center text-gray-500 text-sm py-2 px-4">
+      <p className="px-4 py-3 text-center font-mono text-xs uppercase tracking-[0.08em] text-text-muted">
         Tap a square when you find someone who matches it.
       </p>
 
-      {/* Bingo indicator */}
       {hasBingo && (
-        <div className="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm">
-          🎉 BINGO! You got a line!
+        <div className="border-y border-win/60 bg-win/12 py-2 text-center font-display text-base font-semibold uppercase tracking-[0.14em] text-win [text-shadow:0_0_12px_rgba(255,0,170,0.55)]">
+          BINGO SIGNAL ACQUIRED
         </div>
       )}
 
-      {/* Board */}
-      <div className="flex-1 flex items-center justify-center p-3">
+      <div className="flex flex-1 items-center justify-center p-3 sm:p-5">
         <BingoBoard
           board={board}
           winningSquareIds={winningSquareIds}

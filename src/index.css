@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap');
 @import 'tailwindcss';
 
 @theme {
-  --color-accent: #2563eb;
-  --color-accent-light: #3b82f6;
-  --color-marked: #dcfce7;
-  --color-marked-border: #22c55e;
-  --color-bingo: #fbbf24;
+  --color-base: #050508;
+  --color-panel: #0b0b12;
+  --color-border-muted: #1c1c2e;
+  --color-neon: #39ff14;
+  --color-neon-soft: #00f5d4;
+  --color-win: #ff00aa;
+  --color-text-primary: #d4ffc8;
+  --color-text-muted: #4a5a45;
+
+  --font-display: 'Rajdhani', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 html,
@@ -16,6 +23,29 @@ body,
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-mono);
+  background: radial-gradient(circle at top, #11121b 0%, #050508 58%);
+  color: var(--color-text-primary);
   -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes neonPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes modalIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
